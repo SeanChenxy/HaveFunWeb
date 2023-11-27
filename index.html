@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+
+<html>
+
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>HAVE-FUN</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="./files/bootstrap.min.css">
+    <link rel="stylesheet" href="./files/font-awesome.min.css">
+    <link rel="stylesheet" href="./files/codemirror.min.css">
+    <link rel="stylesheet" href="./files/app.css">
+
+
+
+
+</head>
+
+<body>
+    <div class="container" id="main">
+        <div class="row">
+            <h1 class="col-md-20 text-center">
+                <br></br>
+                <b>HAVE-FUN</b>: <br> Human Avatar Reconstruction from Few-Shot Unconstrained Images<br>
+                <small>
+                    arXiv 2023
+                </small>
+            </h1>
+            <hr style="margin-top:0px">
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <ul class="list-inline">
+                    <li>
+                        <!-- <a href="" style="font-size: 16px;"> -->
+                        Xihe Yang
+                        <!-- </a> -->
+                        <sup>1,2*</sup>
+                    </li>
+                    <li>
+                        <a href="https://seanchenxy.github.io/" style="font-size: 16px;">
+                            Xingyu Chen
+                        </a>
+                        <sup>1*</sup>
+                    </li>
+                    <li>
+                        <!-- <a href="" style="font-size: 16px;"> -->
+                        Shaohui Wang
+                        <!-- </a> -->
+                        <sup>1,4</sup>
+                    </li>
+                    <li>
+                        <a href="https://tomguluson92.github.io/" style="font-size: 16px;">
+                            Daiheng Gao
+                        </a>
+                        <sup>5</sup>
+                    </li>
+                    <li>
+                        <a href="https://gaplab.cuhk.edu.cn/pages/people" style="font-size: 16px;">
+                            Xiaoguang Han
+                        </a>
+                        <sup>2,3</sup>
+                    </li>
+                    <li>
+                        <a href="https://sites.google.com/site/zjuwby/" style="font-size: 16px;">
+                            Baoyuan Wang
+                        </a>
+                        <sup>1</sup>
+                    </li>
+                    <br>
+                    <a></a><br>
+                    <li>
+                        <sup>1</sup>
+                        <a href="https://www.xiaoice.com/" style="font-size: 16px;">
+                            Xiaobing.AI
+                        </a>
+                    </li>
+                    <li>
+                        <sup>2</sup>
+                        <a href="https://gaplab.cuhk.edu.cn/" style="font-size: 16px;">
+                            SSE, CUHKSZ
+                        </a>
+                    </li>
+                    <li>
+                        <sup>3</sup>
+                        <a href="https://gaplab.cuhk.edu.cn/" style="font-size: 16px;">
+                            FNii, CUHKSZ
+                        </a>
+                    </li>
+                    <li>
+                        <sup>4</sup>
+                        <!-- <a href="https://gaplab.cuhk.edu.cn/" style="font-size: 16px;"> -->
+                        Tsinghua University
+                        <!-- </a> -->
+                    </li>
+                    <li>
+                        <sup>5</sup>
+                        <!-- <a href="https://gaplab.cuhk.edu.cn/" style="font-size: 16px;"> -->
+                        Freelancer
+                        <!-- </a> -->
+                    </li>
+                    <li>
+                        <sup>*</sup>
+                        These authors contributed equally to this work
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4 text-center">
+                <ul class="nav nav-pills nav-justified">
+                    <li>
+                        <a href="">
+                            <img src="./asserts/arxiv.png" height="60px">
+                            <h4><strong>Paper</strong></h4>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a onClick="alert('Code coming soon!\nContact chenxingyu@xiaobing.ai for more details.')">
+                        <!-- <a href=""> -->
+                            <img src="./asserts/github.png" height="60px">
+                            <h4><strong>Code</strong></h4>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-md-offset-0 text-center">
+                <a>
+                    <!-- <img style="width:100%;height:100%;" playsinline autoplay loop preload muted>
+                        <source src="./asserts/teaser.png">
+                    </img> -->
+                    <!-- <img  style="width:100%;height:100%;" src="./asserts/teaser.png"> -->
+                    <video style="width:100%;height:100%;" playsinline autoplay loop preload muted>
+                        <source src="./asserts/teaser.mp4" type="video/mp4">
+                    </video>
+                </a>
+                <p class="text-justify" style="font-size: 16px;">
+                    Given a few images with various viewpoints and articulated poses, our approach can reconstruct an animatable human avatar.
+                </p>
+                <br></br>
+                <h2>
+                    Abstract
+                </h2>
+                <hr style="margin-top:0px">
+                <p class="text-justify" style="font-size: 16px;">
+                    For human avatar reconstruction, contemporary techniques commonly necessitate the acquisition of costly data and struggle to achieve satisfactory results from a small number of casual images. In this paper, we investigate this task from a few-shot unconstrained photo album. The reconstruction of human avatars from such data sources is challenging because of limited data amount and dynamic articulated poses.  For handling dynamic data, we integrate a skinning mechanism with deep marching tetrahedra (DMTet) to form a drivable tetrahedral representation, which drives arbitrary mesh topologies generated by the DMTet for the adaptation of unconstrained images. To effectively mine instructive information from few-shot data, we devise a two-phase optimization method with few-shot reference and few-shot guidance. The former focuses on aligning avatar identity with reference images, while the latter aims to generate plausible appearances for unseen regions. Overall, our framework, called HaveFun, can undertake avatar reconstruction, rendering, and animation. Extensive experiments on our developed benchmarks demonstrate that HaveFun exhibits substantially superior performance in reconstructing the human body and hand. Our models and datasets will be made publicly available.
+                </p>
+            </div>
+        </div>
+
+        <!-- <div class="row">
+            <div class="col-md-12 col-md-offset-0 text-center">
+                <br></br>
+                <h2>
+                    Video
+                </h2>
+                <hr style="margin-top:0px">
+                <div class="text-center">
+                    <div style="position:relative;padding-top:56.25%;">
+                        <iframe src="" allowfullscreen=""
+                            style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="row">
+            <div class="col-md-12 col-md-offset-0 text-center">
+                <br></br>
+                <h2>
+                    Overview
+                </h2>
+                <hr style="margin-top:0px">
+                <img src="./asserts/framework.png" class="img-responsive" alt="overview"><br>
+                <p class="text-justify" style="font-size: 16px;">
+                    Overview of HaveFun framework. Based on the DMTet, we design a driveable tetrahedral representation with the skinning mechanism. In terms of optimization, we employ loss functions based on reference-data reconstruction and SDS guidance to create human avatars from few-shot unconstrained images.
+                </p>
+            </div>
+        </div>
+
+
+        <!-- <div class="row">
+            <div class="col-md-12 col-md-offset-0 text-center">
+                <br></br>
+                <h2>
+                    Comparisons with Prior Arts
+                </h2>
+                <hr style="margin-top:0px">
+                <img src="./asserts/compare.png" class="img-responsive" alt="illum"><br>
+                <p class="text-justify" style="font-size: 16px; text-align: center">
+                    Comparison of body reconstruction on our FS-XHumans, where TeCH is a 1-shot method and SelfRecon is illustrated with 8-shot or video (100-shot) data training.
+                </p>
+            </div>
+        </div> -->
+
+
+
+        <div class="row">
+            <div class="col-md-12 col-md-offset-0 text-center">
+                <br></br>
+                <h2>
+                    Comparisons with Prior Arts
+                </h2>
+                <hr style="margin-top:0px">
+                <p class="text-justify" style="font-size: 16px;">
+                    Compariosn body reconstruction with SelfRecon (CVPR2022) and TeCH (3DV24) on FS-XHumans dataset
+                </p>
+                <video style="width:100%;height:100%;" playsinline autoplay loop preload muted>
+                    <source src="./asserts/bodycomp.mp4" type="video/mp4">
+                </video>
+                <hr style="margin-top:0px">
+                <p class="text-justify" style="font-size: 16px;">
+                    Body animation results on FS-XHumans dataset
+                </p>
+                <video style="width:100%;height:100%;" playsinline autoplay loop preload muted>
+                    <source src="./asserts/bodyanimate.mp4" type="video/mp4">
+                </video>
+                <hr style="margin-top:0px">
+                <p class="text-justify" style="font-size: 16px;">
+                    Compariosn hand reconstruction with SelfRecon (CVPR2022) on FS-DART dataset
+                </p>
+                <video style="width:100%;height:100%;" playsinline autoplay loop preload muted>
+                    <source src="./asserts/handcomp.mp4" type="video/mp4">
+                </video>
+                <hr style="margin-top:0px">
+                <p class="text-justify" style="font-size: 16px;">
+                    Hand animation results on FS-DART dataset
+                </p>
+                <video style="width:100%;height:100%;" playsinline autoplay loop preload muted>
+                    <source src="./asserts/handanimate.mp4" type="video/mp4">
+                </video>
+                <hr style="margin-top:0px">
+                <p class="text-justify" style="font-size: 16px;">
+                    Human body reconstruction beyond datasets
+                </p>
+                <video style="width:100%;height:100%;" playsinline autoplay loop preload muted>
+                    <source src="./asserts/realbody.mp4" type="video/mp4">
+                </video>
+                <hr style="margin-top:0px">
+                <p class="text-justify" style="font-size: 16px;">
+                    Hand reconstruction beyond datasets
+                </p>
+                <video style="width:100%;height:100%;" playsinline autoplay loop preload muted>
+                    <source src="./asserts/realhand.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+
+        <!-- <div class="row">
+            <div class="col-md-12 col-md-offset-0 text-center">
+                <br></br>
+                <h2>
+                    Manifolds Visualization
+                </h2>
+                <hr style="margin-top:0px">
+                <p class="text-justify" style="font-size: 16px;">
+                    GRAM constrains point sampling and radiance field learning on 2D manifolds, embodied as a set of
+                    implicit surfaces. These implicit surfaces are shared for the trained object category, jointly
+                    learned with GAN training, and fixed at inference time.
+                </p>
+                <video style="width:93%;height:93%;" playsinline autoplay loop preload muted>
+                    <source src="./files/manifold.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div> -->
+
+        <!-- <div class="row">
+            <div class="col-md-12 col-md-offset-0 text-center">
+                <br></br>
+                <h2>
+                    3D Geometry Visualization
+                </h2>
+                <hr style="margin-top:0px">
+                <p class="text-justify" style="font-size: 16px;">
+                    Although GRAM confines the input domain of the radiance field on 2D manifolds, we can still extract
+                    proxy 3D shapes of the generated objects using the volume-based marching cubes algorithm. It can be
+                    observed that GRAM produces high-quality geometry with detailed structures well depicted, which is
+                    the key to achieve strong visual
+                    3D consistency across different views.
+                </p>
+                <video style="width:100%;height:100%;" playsinline autoplay loop preload muted>
+                    <source src="./files/shape.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div> -->
+
+<!--         <div class="row">
+            <div class="col-md-12 col-md-offset-0 text-center">
+                <br></br>
+                <h2>
+                    Image Embedding and Editing
+                </h2>
+                <hr style="margin-top:0px">
+                <p class="text-justify" style="font-size: 16px;">
+                GAN inversion is naturally supported by GRAM. Given an input image, we can first embed it into the learned latent space and then freely move the camera viewpoint to synthesize images at novel views.
+                </p>
+                <video style="width:67%;height:67%;" playsinline autoplay loop preload muted>
+                    <source src="./files/inv2.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div> -->
+
+        <!-- <div class="row">
+            <div class="col-md-12 col-md-offset-0 text-center">
+                <br></br>
+                <h2>
+                    Responsible AI Considerations
+                </h2>
+                <hr style="margin-top:0px">
+                <p class="text-justify" style="font-size: 16px;">
+                    The goal of this paper is to study generative modelling of the 3D hands from 2D images,
+                    and to provide a method for generating images of free-pose hands.
+                    It is not intended to manipulate existing images nor to create content that is used to mislead or deceive.
+                    This method does not have understanding and control of the generated content.
+                    Thus, adding targeted facial expressions or mouth movements is out of the scope of this work.
+                    However, the method, like all other related AI image generation techniques,
+                    could still potentially be misused for impersonating humans. Currently,
+                    the images generated by this method contain visual artifacts, unnatural texture patterns,
+                    and other unpredictable failures that can be spotted by humans and fake image detection algorithms.
+                    We also plan to investigate applying this technology for advancing 3D- and video-based forgery detection.
+                </p>
+            </div>
+        </div> -->
+
+        <!-- <div class="row">
+            <div class="col-md-12 col-md-offset-0 text-center">
+                <br></br>
+                <h2>
+                    Availability of Software
+                </h2>
+                <hr style="margin-top:0px">
+                <p class="text-justify" style="font-size: 16px;">
+                    Per concerns about misuse of this method, the code is available for use under a research-only license.
+                </p>
+            </div>
+        </div> -->
+
+        <div class="row">
+            <div class="col-md-12 col-md-offset-0">
+                <div class="text-center">
+                    <h2>
+                        Citation
+                    </h2>
+                </div>
+                <hr style="margin-top:0px">
+                <div class="form-group col-md-12 col-md-offset-0">
+                    <div class="CodeMirror cm-s-default CodeMirror-wrap" style="font-size: 16px;">
+                        <div
+                            style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 4px; left: 4px; ">
+                            <textarea autocorrect="off" autocapitalize="off" spellcheck="false"
+                                style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none;"
+                                tabindex="0"></textarea></div>
+                        <div class="CodeMirror-vscrollbar" cm-not-content="true">
+                            <div style="min-width: 1px; height: 0px;"></div>
+                        </div>
+                        <div class="CodeMirror-hscrollbar" cm-not-content="true">
+                            <div style="height: 100%; min-height: 1px; width: 0px;"></div>
+                        </div>
+                        <div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div>
+                        <div class="CodeMirror-gutter-filler" cm-not-content="true"></div>
+                        <div class="CodeMirror-scroll" tabindex="-1">
+                            <div class="CodeMirror-sizer"
+                                style="margin-left: 0px; margin-bottom: -17px; border-right-width: 13px; min-height: 162px; padding-right: 0px; padding-bottom: 0px;">
+                                <div style="position: relative; top: 0px;">
+                                    <div class="CodeMirror-lines">
+                                        <div style="position: relative; outline: none;">
+                                            <div class="CodeMirror-measure">AخA</div>
+                                            <div class="CodeMirror-measure"></div>
+                                            <div style="position: relative; z-index: 1;"></div>
+                                            <div class="CodeMirror-cursors">
+                                                <div class="CodeMirror-cursor"
+                                                    style="left: 4px; top: 0px; height: 17.1406px;">&nbsp;</div>
+                                            </div>
+                                            <div class="CodeMirror-code" style="">
+                                                <pre
+                                                    class=" CodeMirror-line "><span style="padding-right: 0.1px;">@article{bib:havefun,</span></pre>
+                                                <pre
+                                                    class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp;  title={HAVE-FUN: Human Avatar Reconstruction from Few-Shot Unconstrained Images},</span></pre>
+                                                <pre
+                                                    class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp;  author={Yang, Xihe and Chen, Xingyu and Gao, Daiheng and Han, Xiaoguang and Wang, Baoyuan},</span></pre>
+                                                <pre
+                                                    class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp;  journal={arXiv:},</span></pre>
+                                                <pre
+                                                    class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp;  year={2023}</span></pre>
+                                                <pre
+                                                    class=" CodeMirror-line "><span style="padding-right: 0.1px;">}</span></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="position: absolute; height: 13px; width: 1px; top: 280px;"></div>
+                            <div class="CodeMirror-gutters" style="display: none; height: 300px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-md-offset-0 text-center">
+                <br></br>
+                <h2>
+                    Acknowledgements
+                </h2>
+                <hr style="margin-top:0px">
+                <p class="text-justify" style="font-size: 16px;">
+                    We thank Yu Deng for the fruitful advice and discussion to improve the paper. <br>
+                    The website template was adapted from <a href="https://yudeng.github.io/GRAM/">GRAM</a>.
+                </p>
+            </div>
+        </div>
+
+
+</body>
+
+</html>
